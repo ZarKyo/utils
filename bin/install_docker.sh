@@ -58,7 +58,8 @@ curl -fsSL https://get.docker.com/rootless | sh
 # Configure environment
 echo "🔧 Configuring environment for rootless Docker..."
 export PATH="/home/$USER/bin:$PATH"
-export DOCKER_HOST="unix:///run/user/$(id -u)/docker.sock"
+DOCKER_HOST="unix:///run/user/$(id -u)/docker.sock"
+export DOCKER_HOST
 
 # Add to shell config files (check if they exist)
 SHELL_CONFIGS=("$HOME/.zshrc" "$HOME/.bashrc")
