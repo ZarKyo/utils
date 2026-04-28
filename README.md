@@ -1,5 +1,7 @@
 # 🛠️ Utility Scripts Collection
 
+[![Super-Linter](https://github.com/ZarKyo/utils/actions/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 A small collection of handy utility scripts to automate common tasks and simplify day-to-day workflows.
 
 These scripts are lightweight, practical, and designed to be easy to understand and modify.
