@@ -3,12 +3,12 @@
 # Installs the VMware HGFS kernel module from the VMware Tools ISO.
 # Required when open-vm-tools does not provide HGFS support.
 #
-# Usage: bash install-vmhgfs.sh [/path/to/linux.iso]
+# Usage: bash install_vmhgfs.sh [/path/to/linux.iso]
 #   Defaults to ~/Desktop/linux.iso if no argument is given.
 #
 
 set -e
-LOG=/tmp/install-vmhgfs.log
+LOG=/tmp/install_vmhgfs.log
 touch "$LOG"
 
 # shellcheck source=/dev/null
