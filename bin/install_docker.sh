@@ -57,8 +57,8 @@ curl -fsSL https://get.docker.com/rootless | sh
 
 # Configure environment
 echo "🔧 Configuring environment for rootless Docker..."
-export PATH=/home/$USER/bin:$PATH
-export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
+export PATH="/home/$USER/bin:$PATH"
+export DOCKER_HOST="unix:///run/user/$(id -u)/docker.sock"
 
 # Add to shell config files (check if they exist)
 SHELL_CONFIGS=("$HOME/.zshrc" "$HOME/.bashrc")
@@ -66,10 +66,10 @@ for config in "${SHELL_CONFIGS[@]}"; do
     if [[ -f "$config" ]]; then
         echo "📝 Adding Docker environment variables to $config"
         if ! grep -q "export PATH=/home/$USER/bin:\$PATH" "$config"; then
-            echo 'export PATH=/home/$USER/bin:$PATH' >> "$config"
+            echo "export PATH=/home/$USER/bin:$PATH" >> "$config"
         fi
-        if ! grep -q "export DOCKER_HOST=unix:///run/user/\$(id -u)/docker.sock" "$config"; then
-            echo 'export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock' >> "$config"
+        if ! grep -q "export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock" "$config"; then
+            echo "export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock" >> "$config"
         fi
     fi
 done

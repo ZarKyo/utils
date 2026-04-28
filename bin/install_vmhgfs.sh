@@ -48,8 +48,7 @@ sudo umount /mnt/cdrom
 cd vmware-tools-distrib || error-exit-message "Couldn't cd to vmware-tools-distrib."
 
 print_status "INFO" "Start vmware-install.pl."
-# shellcheck disable=SC2024
-sudo ./vmware-install.pl -d >> "$LOG" 2>&1
+sudo ./vmware-install.pl -d 2>&1 | tee -a "$LOG" > /dev/null
 print_status "INFO" "Installation completed."
 
 print_status "INFO" "Remove TMP_DIR: $TMP_DIR"
@@ -62,10 +61,8 @@ if [[ "$(vmware-hgfsclient)" != "" ]]; then
 fi
 
 print_status "INFO" "Stopping open-vm-tools."
-# shellcheck disable=SC2024
-sudo service open-vm-tools stop >> "$LOG" 2>&1
+sudo service open-vm-tools stop 2>&1 | tee -a "$LOG" > /dev/null
 print_status "INFO" "Starting open-vm-tools."
-# shellcheck disable=SC2024
-sudo service open-vm-tools start >> "$LOG" 2>&1
+sudo service open-vm-tools start 2>&1 | tee -a "$LOG" > /dev/null
 print_status "INFO" "You still might need to reboot to get copy and paste to work."
 print_status "INFO" "Installation of vmhgfs completed."
