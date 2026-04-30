@@ -25,22 +25,26 @@ TextColor=(
 NC='\033[0m'                  # No Color
 
 print_status() {
-    
     local tag="$1"
     local msg="$2"
     local tclr=${TextColor[$tag]:-$NC}
+    local ts
+
+    ts="$(date '+%Y-%m-%d %H:%M:%S')"
 
     if [[ "$tag" == "ERROR" ]]; then
-        printf "${tclr}%s${NC}\n" "$msg" >&2
+        printf "${tclr}%s - [%s] - %s${NC}\n" "$ts" "$tag" "$msg" >&2
     else
-        printf "${tclr}%s${NC}\n" "$msg"
+        printf "${tclr}%s - [%s] - %s${NC}\n" "$ts" "$tag" "$msg"
     fi
+    [[ -n "${LOG:-}" ]] && printf "%s - [%s] - %s\n" "$ts" "$tag" "$msg" >> "$LOG"
 }
 
 # Check root rights
 function check_root() {
     if [[ $EUID -ne 0 ]]; then
-        print_status "ERROR" "This script must be run as root !" >&2
+        print_status "ERROR" "This script must be run as root !"
         exit 1
     fi
 }
+
